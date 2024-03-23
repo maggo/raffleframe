@@ -1,5 +1,5 @@
 import { Button, FrameContext } from "frog";
-import { Container } from "../../../Container.js";
+import { Container } from "../Container.js";
 import { Route, State } from "../../index.js";
 
 export async function Home(ctx: FrameContext<{ State: State }>) {

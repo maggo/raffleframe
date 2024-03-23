@@ -2,7 +2,7 @@ import { NeynarAPIClient } from "@neynar/nodejs-sdk";
 
 import { Button, FrameContext } from "frog";
 import type { NeynarVariables } from "frog/middlewares";
-import { Container } from "../../../Container.js";
+import { Container } from "../Container.js";
 import { Route, State } from "../../index.js";
 import { kvClient } from "../kv.js";
 

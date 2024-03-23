@@ -1,5 +1,5 @@
 import { Button, FrameContext, TextInput } from "frog";
-import { Container } from "../../../Container.js";
+import { Container } from "../Container.js";
 import { State } from "../../index.js";
 import { kvClient } from "../kv.js";
 
