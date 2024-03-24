@@ -4,6 +4,7 @@ import { Route, State } from "@/app/api/[[...routes]]/route";
 import { Container } from "@/lib/Container";
 import { kvClient } from "@/lib/kv";
 import { neynar } from "@/lib/neynar";
+import { fdk } from "@/lib/pinata";
 
 import { Button, FrameContext } from "frog";
 import type { NeynarVariables } from "frog/middlewares";
@@ -14,6 +15,10 @@ export async function Participate(
   const castHash = ctx.frameData?.castId.hash;
   const viewerId = ctx.var.interactor?.fid;
   const authorName = ctx.var.cast?.author.username;
+
+  if (ctx.frameData) {
+    await fdk.sendAnalytics("raffleframe", await ctx.req.json(), castHash);
+  }
 
   if (!castHash || !viewerId) {
     throw new Error("Frame invalid");
