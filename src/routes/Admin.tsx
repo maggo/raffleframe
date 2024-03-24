@@ -31,7 +31,7 @@ export async function Admin(
     ),
     intents: [
       <Button key="execute" action="/execute">
-        Execute Giveaway
+        Draw Winners
       </Button>,
       <Button key="refresh">Refresh</Button>,
     ],

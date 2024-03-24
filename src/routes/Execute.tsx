@@ -74,7 +74,7 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
       ),
       intents: [
         <Button.Transaction key="createRaffle" target="/create-raffle">
-          Create Giveaway
+          Draw Winners onchain
         </Button.Transaction>,
       ],
     });

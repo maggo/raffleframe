@@ -89,17 +89,17 @@ export async function Participate(
           <div tw="flex flex-col items-start">
             <div tw="flex text-4xl text-emerald-600 my-2">
               <span>
-                {hasFollowed ? "✅" : "❌"} Follow{" "}
+                {hasFollowed ? "✅" : "➡️"} Follow{" "}
                 {authorName ? `@${authorName}` : "the author"}
               </span>
             </div>
             <div tw="flex text-4xl text-emerald-600 my-2">
-              <span>{hasLiked ? "✅" : "❌"} Like this cast</span>
+              <span>{hasLiked ? "✅" : "➡️"} Like this cast</span>
             </div>
           </div>
         </div>
         <div tw="absolute bottom-12 text-emerald-800 text-3xl">
-          Allow a couple minutes for this status to update
+          Refresh in a couple of minutes
         </div>
       </Container>
     ),
