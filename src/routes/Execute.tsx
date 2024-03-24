@@ -11,7 +11,9 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
 
   const { transactionId } = ctx;
 
-  if (transactionId) {
+  const isValidTransactionId = transactionId && transactionId !== "0x";
+
+  if (isValidTransactionId) {
     await kvClient.set(`raffle:${castHash}`, transactionId);
     return ctx.res({
       image: (
@@ -68,7 +70,11 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
           {inputIsValid ? (
             <div tw="text-5xl text-white font-bold my-8">{`You picked ${state.winnersCount}`}</div>
           ) : (
-            <div tw="text-5xl text-red-500 font-bold my-8">{`Invalid choice: ${state.winnersCount}`}</div>
+            <div tw="text-5xl text-red-500 font-bold my-8">
+              {state.winnersCount
+                ? `Invalid choice: ${state.winnersCount}`
+                : ""}
+            </div>
           )}
         </div>
       </Container>

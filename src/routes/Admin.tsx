@@ -25,6 +25,7 @@ export async function Admin(ctx: FrameContext<{ State: State }>) {
       <Button key="execute" action="/execute">
         Execute Raffle
       </Button>,
+      <Button key="refresh">Refresh</Button>,
     ],
   });
 }

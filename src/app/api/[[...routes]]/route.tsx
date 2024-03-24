@@ -16,6 +16,7 @@ import { neynar } from "frog/middlewares";
 import { serveStatic } from "frog/serve-static";
 import { handle } from "frog/next";
 import { Hex, encodePacked, keccak256 } from "viem";
+import { publicClient } from "@/lib/viem";
 
 export type Route = "/" | "/participate" | "/execute";
 
@@ -111,6 +112,20 @@ app.transaction("/create-raffle", async (ctx) => {
     minBlocksToWait: MIN_BLOCKS_TO_WAIT,
   });
 
+  const value = await publicClient.readContract({
+    address: FAIRY_RAFFLE_FACTORY_ADDRESS,
+    abi: FAIRY_RAFFLE_FACTORY_ABI,
+    functionName: "getDynamicFee",
+  });
+
+  console.log({
+    root: merkleTree.root as Hex,
+    entries: BigInt(entries.length),
+    winners: BigInt(winnersCount),
+    ipfs: response.IpfsHash,
+    value,
+  });
+
   // Contract transaction response.
   return ctx.contract({
     abi: FAIRY_RAFFLE_FACTORY_ABI,
@@ -124,6 +139,7 @@ app.transaction("/create-raffle", async (ctx) => {
       MIN_BLOCKS_TO_WAIT,
     ],
     to: FAIRY_RAFFLE_FACTORY_ADDRESS,
+    value,
   });
 });
 
