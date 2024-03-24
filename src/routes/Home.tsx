@@ -1,6 +1,8 @@
+/** @jsxImportSource frog/jsx */
+
 import { Button, FrameContext } from "frog";
-import { Container } from "../Container.js";
-import { Route, State } from "../../index.js";
+import { Route, State } from "@/app/api/[[...routes]]/route";
+import { Container } from "@/lib/Container";
 
 export async function Home(ctx: FrameContext<{ State: State }>) {
   return ctx.res({
@@ -12,7 +14,11 @@ export async function Home(ctx: FrameContext<{ State: State }>) {
       </Container>
     ),
     intents: [
-      <Button action="/participate" value={"/participate" as Route}>
+      <Button
+        key="participate"
+        action="/participate"
+        value={"/participate" as Route}
+      >
         Enter Raffle
       </Button>,
     ],

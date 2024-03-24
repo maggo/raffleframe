@@ -1,12 +1,13 @@
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+/** @jsxImportSource frog/jsx */
 
+import { Route, State } from "@/app/api/[[...routes]]/route";
+import { Container } from "@/lib/Container";
+import { kvClient } from "@/lib/kv";
+import { NeynarAPIClient } from "@neynar/nodejs-sdk";
 import { Button, FrameContext } from "frog";
 import type { NeynarVariables } from "frog/middlewares";
-import { Container } from "../Container.js";
-import { Route, State } from "../../index.js";
-import { kvClient } from "../kv.js";
 
-const neynar = new NeynarAPIClient(import.meta.env.VITE_NEYNAR_API_KEY!);
+const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY!);
 
 export async function Participate(
   ctx: FrameContext<{ State: State; Variables: NeynarVariables }>,
@@ -34,14 +35,16 @@ export async function Participate(
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-white mb-4">Congratulations you're in!</div>
+            <div tw="text-6xl text-white mb-4">
+              Congratulations you&apos;re in!
+            </div>
             <div tw="flex text-4xl text-gray-500">
               <span>There are {participantCount} participants.</span>
             </div>
           </div>
         </Container>
       ),
-      intents: [<Button.Reset>Go Back</Button.Reset>],
+      intents: [<Button.Reset key="back">Go Back</Button.Reset>],
     });
   }
 
@@ -63,12 +66,12 @@ export async function Participate(
           <div tw="flex flex-col items-center">
             <div tw="text-6xl text-white mb-4">Congratulations!</div>
             <div tw="text-4xl text-gray-500">
-              You've been entered into the raffle
+              You&apos;ve been entered into the raffle
             </div>
           </div>
         </Container>
       ),
-      intents: [<Button.Reset>Go Back</Button.Reset>],
+      intents: [<Button.Reset key="back">Go Back</Button.Reset>],
     });
   }
 

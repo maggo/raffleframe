@@ -1,7 +1,9 @@
+/** @jsxImportSource frog/jsx */
+
 import { Button, FrameContext, TextInput } from "frog";
-import { Container } from "../Container.js";
-import { State } from "../../index.js";
-import { kvClient } from "../kv.js";
+import { Container } from "@/lib/Container";
+import { State } from "@/app/api/[[...routes]]/route";
+import { kvClient } from "@/lib/kv";
 
 export async function Execute(ctx: FrameContext<{ State: State }>) {
   const castHash = ctx.frameData?.castId.hash;
@@ -50,7 +52,7 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
         </Container>
       ),
       intents: [
-        <Button.Transaction target="/create-raffle">
+        <Button.Transaction key="createRaffle" target="/create-raffle">
           Create Raffle
         </Button.Transaction>,
       ],
@@ -72,8 +74,10 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
       </Container>
     ),
     intents: [
-      <TextInput placeholder="Number of winners" />,
-      <Button value="submit">Submit</Button>,
+      <TextInput key="winnersCount" placeholder="Number of winners" />,
+      <Button key="submit" value="submit">
+        Submit
+      </Button>,
     ],
   });
 }

@@ -101,7 +101,7 @@ export function verifyMerkleProof(
  * @param proofPath ProofPath object
  */
 export function toClaimArgs(proofPath: ProofPath) {
-  let index = 0n;
+  let index = BigInt(0);
   for (let i = 0; i < proofPath.pathIndices.length; i++) {
     // direction of hash for this level
     const dir = proofPath.pathIndices[i];

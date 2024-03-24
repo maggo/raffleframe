@@ -1,7 +1,9 @@
+/** @jsxImportSource frog/jsx */
+
 import { Button, FrameContext } from "frog";
-import { Container } from "../Container.js";
-import { State } from "../../index.js";
-import { kvClient } from "../kv.js";
+import { Container } from "@/lib/Container";
+import { State } from "@/app/api/[[...routes]]/route";
+import { kvClient } from "@/lib/kv";
 
 export async function Admin(ctx: FrameContext<{ State: State }>) {
   const castHash = ctx.frameData?.castId.hash;
@@ -19,6 +21,10 @@ export async function Admin(ctx: FrameContext<{ State: State }>) {
         </div>
       </Container>
     ),
-    intents: [<Button action="/execute">Execute Raffle</Button>],
+    intents: [
+      <Button key="execute" action="/execute">
+        Execute Raffle
+      </Button>,
+    ],
   });
 }
