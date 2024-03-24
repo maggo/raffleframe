@@ -15,7 +15,9 @@ export async function Home(ctx: FrameContext<{ State: State }>) {
           height="100%"
         />
         <div tw="flex flex-col items-center">
-          <div tw="text-6xl text-white mb-4">Raffleframe</div>
+          <div tw="text-6xl text-white mb-4 font-[Bitter] font-semibold">
+            Raffleframe
+          </div>
           <div tw="text-4xl text-gray-500">
             Like and follow, then click the button to enter the raffle!
           </div>

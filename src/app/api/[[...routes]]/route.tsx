@@ -18,6 +18,8 @@ import { handle } from "frog/next";
 import { Hex, encodePacked, keccak256 } from "viem";
 import { publicClient } from "@/lib/viem";
 import { Results } from "@/routes/Results";
+import { readFileSync } from "fs";
+import path from "path";
 
 export type Route = "/" | "/participate" | "/execute";
 
@@ -25,6 +27,14 @@ export interface State {
   route: Route;
   winnersCount?: number;
 }
+
+const fontRegular = readFileSync(
+  path.resolve(process.cwd(), "./public/api/Bitter-Regular.ttf"),
+);
+
+const fontSemiBold = readFileSync(
+  path.resolve(process.cwd(), "./public/api/Bitter-SemiBold.ttf"),
+);
 
 const app = new Frog<{ State: State }>({
   basePath: "/api",
@@ -37,6 +47,22 @@ const app = new Frog<{ State: State }>({
     route: "/",
   },
   verify: "silent",
+  imageOptions: {
+    fonts: [
+      {
+        name: "Bitter",
+        data: fontRegular,
+        weight: 400,
+        style: "normal",
+      },
+      {
+        name: "Bitter",
+        data: fontSemiBold,
+        weight: 600,
+        style: "normal",
+      },
+    ],
+  },
 });
 
 app.frame("/", async (ctx) => {
