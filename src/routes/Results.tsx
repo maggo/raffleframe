@@ -6,10 +6,9 @@ import { State } from "@/app/api/[[...routes]]/route";
 import { Container } from "@/lib/Container";
 import { drawRandomWinners } from "@/lib/drawing";
 import { neynar } from "@/lib/neynar";
-import { pinata } from "@/lib/pinata";
 import { publicClient } from "@/lib/viem";
 import { Button, FrameContext } from "frog";
-import { Hex, parseEventLogs, getContract } from "viem";
+import { Hex, getContract, parseEventLogs } from "viem";
 
 export async function Results(
   ctx: FrameContext<{ State: State }>,
@@ -86,7 +85,12 @@ export async function Results(
       <Container>
         <div tw="flex flex-col items-center">
           <div tw="text-6xl text-white mb-4">Raffle is over!</div>
-          <div tw="flex text-4xl text-gray-500 mt-4 self-start">Winners:</div>
+          <div tw="flex text-4xl text-gray-500 mb-4">
+            {entries.length} participants, {winners.length} winners.
+          </div>
+          <div tw="flex text-4xl text-gray-500 my-1 self-start">
+            Congratulations!
+          </div>
 
           <div tw="flex flex-col flex-wrap text-4xl text-white w-[1000px] max-h-[400px]">
             {data.users.map((user, index) => (
