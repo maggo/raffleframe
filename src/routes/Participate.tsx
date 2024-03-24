@@ -39,10 +39,10 @@ export async function Participate(
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-white mb-4">
+            <div tw="text-6xl text-emerald-400 font-bold mb-4">
               Congratulations you&apos;re in!
             </div>
-            <div tw="flex text-4xl text-gray-500">
+            <div tw="flex text-4xl text-emerald-600">
               <span>There are {participantCount} participants.</span>
             </div>
           </div>
@@ -67,9 +67,11 @@ export async function Participate(
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-white mb-4">Congratulations!</div>
-            <div tw="text-4xl text-gray-500">
-              You&apos;ve been entered into the raffle
+            <div tw="text-6xl text-emerald-400 font-bold mb-4">
+              Congratulations!
+            </div>
+            <div tw="text-4xl text-emerald-600">
+              You&apos;ve been entered into the giveaway
             </div>
           </div>
         </Container>
@@ -81,20 +83,22 @@ export async function Participate(
     image: (
       <Container>
         <div tw="flex flex-col items-center">
-          <div tw="text-6xl text-white mb-4">To participate…</div>
+          <div tw="text-6xl text-emerald-400 font-bold mb-4">
+            To participate…
+          </div>
           <div tw="flex flex-col items-start">
-            <div tw="flex text-4xl text-gray-500 my-2">
+            <div tw="flex text-4xl text-emerald-600 my-2">
               <span>
                 {hasFollowed ? "✅" : "❌"} Follow{" "}
                 {authorName ? `@${authorName}` : "the author"}
               </span>
             </div>
-            <div tw="flex text-4xl text-gray-500 my-2">
+            <div tw="flex text-4xl text-emerald-600 my-2">
               <span>{hasLiked ? "✅" : "❌"} Like this cast</span>
             </div>
           </div>
         </div>
-        <div tw="absolute bottom-2 text-gray-700 text-3xl">
+        <div tw="absolute bottom-12 text-emerald-800 text-3xl">
           Allow a couple minutes for this status to update
         </div>
       </Container>

@@ -19,17 +19,19 @@ export async function Admin(
     image: (
       <Container>
         <div tw="flex flex-col items-center">
-          <div tw="text-6xl text-white mb-4">Raffle Admin</div>
-          <div tw="text-4xl text-gray-500">{`${participantCount} participants`}</div>
-          <div tw="text-4xl text-gray-500">
-            {raffleTx ? "Waiting for raffle…" : ""}
+          <div tw="text-6xl text-emerald-400 font-bold mb-4">
+            Giveaway Admin
+          </div>
+          <div tw="text-4xl text-emerald-600">{`${participantCount} participants`}</div>
+          <div tw="text-4xl text-emerald-600">
+            {raffleTx ? "Waiting for giveaway" : ""}
           </div>
         </div>
       </Container>
     ),
     intents: [
       <Button key="execute" action="/execute">
-        Execute Raffle
+        Execute Giveaway
       </Button>,
       <Button key="refresh">Refresh</Button>,
     ],

@@ -19,8 +19,10 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-white mb-4">Deploy Raffle</div>
-            <div tw="text-4xl text-gray-500">Transaction submitted</div>
+            <div tw="text-6xl text-emerald-400 font-bold mb-4">
+              Deploy Giveaway
+            </div>
+            <div tw="text-4xl text-emerald-600">Transaction submitted</div>
           </div>
         </Container>
       ),
@@ -62,15 +64,17 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-white mb-4">Deploy Raffle</div>
-            <div tw="text-4xl text-gray-500">{`Participants: ${participantCount}`}</div>
-            <div tw="text-4xl text-gray-500">{`Winner count: ${state.winnersCount}`}</div>
+            <div tw="text-6xl text-emerald-400 font-bold mb-4">
+              Deploy Giveaway
+            </div>
+            <div tw="text-4xl text-emerald-600">{`Participants: ${participantCount}`}</div>
+            <div tw="text-4xl text-emerald-600">{`Winner count: ${state.winnersCount}`}</div>
           </div>
         </Container>
       ),
       intents: [
         <Button.Transaction key="createRaffle" target="/create-raffle">
-          Create Raffle
+          Create Giveaway
         </Button.Transaction>,
       ],
     });
@@ -80,10 +84,12 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
     image: (
       <Container>
         <div tw="flex flex-col items-center">
-          <div tw="text-6xl text-white mb-4">Pick number of winners</div>
-          <div tw="text-4xl text-gray-500">{`Between 1 and ${participantCount}`}</div>
+          <div tw="text-6xl text-emerald-400 font-bold mb-4">
+            Pick number of winners
+          </div>
+          <div tw="text-4xl text-emerald-600">{`Between 1 and ${participantCount}`}</div>
           {inputIsValid ? (
-            <div tw="text-5xl text-white font-bold my-8">{`You picked ${state.winnersCount}`}</div>
+            <div tw="text-5xl text-emerald-400 font-bold my-8">{`You picked ${state.winnersCount}`}</div>
           ) : (
             <div tw="text-5xl text-red-500 font-bold my-8">
               {state.winnersCount

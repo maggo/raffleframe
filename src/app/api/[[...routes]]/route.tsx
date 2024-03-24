@@ -64,7 +64,22 @@ const app = new Frog<{ State: State }>({
       },
     ],
   },
-}).use(xmtpMiddleware);
+});
+
+app.use(async (c, next) => {
+  await next();
+  const isFrame = c.res.headers.get("content-type")?.includes("html");
+  if (isFrame) {
+    let html = await c.res.text();
+    const metaTag = '<meta property="of:accepts:xmtp" content="2024-02-01" />';
+    html = html.replace(/(<head>)/i, `$1${metaTag}`);
+    c.res = new Response(html, {
+      headers: {
+        "content-type": "text/html",
+      },
+    });
+  }
+});
 
 app.frame("/", xmtpMiddleware, async (ctx) => {
   const { buttonValue, deriveState } = ctx;
@@ -142,7 +157,7 @@ app.transaction("/create-raffle", async (ctx) => {
   );
 
   const response = await pinata.pinJSONToIPFS({
-    name: `Raffleframe ${castHash}`,
+    name: `Farcaster Giveaway Frame ${castHash}`,
     winners: winnersCount,
     entries,
     minBlocksToWait: MIN_BLOCKS_TO_WAIT,

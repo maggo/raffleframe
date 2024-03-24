@@ -5,11 +5,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const url = process.env.VERCEL_URL || "http://localhost:3000";
   const frameMetadata = await getFrameMetadata(`${url}/api`);
   return {
-    title: "Raffleframe",
+    title: "Farcaster Giveaway Frame",
     other: frameMetadata,
   };
 }
 
 export default function Page() {
-  return <h1>Rafflecopter</h1>;
+  return <h1>Farcaster Giveaway Frame</h1>;
 }

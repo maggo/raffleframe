@@ -31,8 +31,10 @@ export async function Results(
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-white mb-4">Raffle is over!</div>
-            <div tw="text-4xl text-gray-500">Please wait…</div>
+            <div tw="text-6xl text-emerald-400 font-bold mb-4">
+              Giveaway is over!
+            </div>
+            <div tw="text-4xl text-emerald-600">Please wait…</div>
           </div>
         </Container>
       ),
@@ -84,15 +86,17 @@ export async function Results(
     image: (
       <Container>
         <div tw="flex flex-col items-center">
-          <div tw="text-6xl text-white mb-4">Raffle is over!</div>
-          <div tw="flex text-4xl text-gray-500 mb-4">
+          <div tw="text-6xl text-emerald-400 font-bold mb-4">
+            Giveaway is over!
+          </div>
+          <div tw="flex text-4xl text-emerald-600 mb-4">
             {entries.length} participants, {winners.length} winners.
           </div>
-          <div tw="flex text-4xl text-gray-500 my-1 self-start">
+          <div tw="flex text-4xl text-emerald-600 my-1 self-start">
             Congratulations!
           </div>
 
-          <div tw="flex flex-col flex-wrap text-4xl text-white w-[1000px] max-h-[400px]">
+          <div tw="flex flex-col flex-wrap text-4xl text-emerald-400 w-[1000px] max-h-[400px]">
             {data.users.map((user, index) => (
               <div key={user.fid} tw="flex my-1 w-1/2 px-2">
                 {index + 1}. {user.username ? `@${user.username}` : user.fid}
@@ -100,10 +104,10 @@ export async function Results(
             ))}
           </div>
         </div>
-        <div tw="absolute bottom-3 flex text-4xl text-gray-600">
+        <div tw="absolute bottom-12 flex text-4xl text-emerald-800">
           <span>
             {userHasWon ? (
-              <span tw="text-white text-5xl">You won!! 🎉</span>
+              <span tw="text-emerald-400 text-5xl">You won!! 🎉</span>
             ) : userHasParticipated ? (
               "You have participated but didn't win!"
             ) : (
@@ -118,7 +122,7 @@ export async function Results(
         key="basescan"
         href={`https://basescan.org/address/${raffleAddress}`}
       >
-        Rafflescan
+        Basescan
       </Button.Link>,
       <Button.Link
         key="metadata"

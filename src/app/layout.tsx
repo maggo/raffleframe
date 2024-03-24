@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Raffleframe",
+  title: "Farcaster Giveaway Frame",
   description: "lol",
 };
 
