@@ -100,7 +100,7 @@ app.frame(
     }
 
     if (viewerIsOrganizer) {
-      return Admin(ctx);
+      return Admin(ctx, raffleTx);
     }
 
     return Participate(ctx);

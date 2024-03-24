@@ -2,7 +2,7 @@
 
 import { Button, FrameContext, TextInput } from "frog";
 import { Container } from "@/lib/Container";
-import { State } from "@/app/api/[[...routes]]/route";
+import { State, type Route } from "@/app/api/[[...routes]]/route";
 import { kvClient } from "@/lib/kv";
 
 export async function Execute(ctx: FrameContext<{ State: State }>) {
@@ -24,6 +24,21 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
           </div>
         </Container>
       ),
+      intents: [
+        <Button.Link
+          key="basescan"
+          href={`https://basescan.org/tx/${transactionId}`}
+        >
+          Basescan
+        </Button.Link>,
+        <Button
+          key="participate"
+          action="/participate"
+          value={"/participate" as Route}
+        >
+          Refresh
+        </Button>,
+      ],
     });
   }
 
