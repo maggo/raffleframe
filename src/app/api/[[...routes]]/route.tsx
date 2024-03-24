@@ -20,6 +20,7 @@ import { publicClient } from "@/lib/viem";
 import { Results } from "@/routes/Results";
 import { readFileSync } from "fs";
 import path from "path";
+import { xmtpMiddleware } from "@/lib/xmtp";
 
 export type Route = "/" | "/participate" | "/execute";
 
@@ -29,11 +30,11 @@ export interface State {
 }
 
 const fontRegular = readFileSync(
-  path.resolve(process.cwd(), "./public/api/Bitter-Regular.ttf"),
+  path.resolve(process.cwd(), "./public/api/PublicSans-Regular.ttf"),
 );
 
-const fontSemiBold = readFileSync(
-  path.resolve(process.cwd(), "./public/api/Bitter-SemiBold.ttf"),
+const fontBold = readFileSync(
+  path.resolve(process.cwd(), "./public/api/PublicSans-Bold.ttf"),
 );
 
 const app = new Frog<{ State: State }>({
@@ -50,22 +51,22 @@ const app = new Frog<{ State: State }>({
   imageOptions: {
     fonts: [
       {
-        name: "Bitter",
+        name: "PublicSans",
         data: fontRegular,
         weight: 400,
         style: "normal",
       },
       {
-        name: "Bitter",
-        data: fontSemiBold,
-        weight: 600,
+        name: "PublicSans",
+        data: fontBold,
+        weight: 700,
         style: "normal",
       },
     ],
   },
-});
+}).use(xmtpMiddleware);
 
-app.frame("/", async (ctx) => {
+app.frame("/", xmtpMiddleware, async (ctx) => {
   const { buttonValue, deriveState } = ctx;
 
   const state = deriveState((state) => {
