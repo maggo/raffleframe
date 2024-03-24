@@ -92,14 +92,15 @@ export async function Results(
           <div tw="flex text-4xl text-emerald-600 mb-4">
             {entries.length} participants, {winners.length} winners.
           </div>
-          <div tw="flex text-4xl text-emerald-600 my-1 self-start">
+          <div tw="flex text-4xl text-emerald-600 my-1 font-bold">
             Congratulations!
           </div>
 
-          <div tw="flex flex-col flex-wrap text-4xl text-emerald-400 w-[1000px] max-h-[400px]">
+          <div tw="flex flex-col flex-wrap text-4xl text-emerald-800 w-[700px] max-h-[400px]">
             {data.users.map((user, index) => (
-              <div key={user.fid} tw="flex my-1 w-1/2 px-2">
-                {index + 1}. {user.username ? `@${user.username}` : user.fid}
+              <div key={user.fid} tw="flex my-1 w-1/2 px-2 font-bold">
+                <span tw="w-10 flex-shrink-0">{index + 1}.</span>{" "}
+                {user.username ? `@${user.username}` : user.fid}
               </div>
             ))}
           </div>
