@@ -3,11 +3,10 @@
 import { Route, State } from "@/app/api/[[...routes]]/route";
 import { Container } from "@/lib/Container";
 import { kvClient } from "@/lib/kv";
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { neynar } from "@/lib/neynar";
+
 import { Button, FrameContext } from "frog";
 import type { NeynarVariables } from "frog/middlewares";
-
-const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY!);
 
 export async function Participate(
   ctx: FrameContext<{ State: State; Variables: NeynarVariables }>,
@@ -44,7 +43,6 @@ export async function Participate(
           </div>
         </Container>
       ),
-      intents: [<Button.Reset key="back">Go Back</Button.Reset>],
     });
   }
 
@@ -71,7 +69,6 @@ export async function Participate(
           </div>
         </Container>
       ),
-      intents: [<Button.Reset key="back">Go Back</Button.Reset>],
     });
   }
 
@@ -98,11 +95,9 @@ export async function Participate(
       </Container>
     ),
     intents: [
-      isEligible ? (
-        <Button.Reset>Go Back</Button.Reset>
-      ) : (
-        <Button value={"/participate" as Route}>Refresh</Button>
-      ),
+      <Button key="participate" value={"/participate" as Route}>
+        Refresh
+      </Button>,
     ],
   });
 }

@@ -17,6 +17,7 @@ import { serveStatic } from "frog/serve-static";
 import { handle } from "frog/next";
 import { Hex, encodePacked, keccak256 } from "viem";
 import { publicClient } from "@/lib/viem";
+import { Results } from "@/routes/Results";
 
 export type Route = "/" | "/participate" | "/execute";
 
@@ -35,7 +36,7 @@ const app = new Frog<{ State: State }>({
   initialState: {
     route: "/",
   },
-  verify: true,
+  verify: "silent",
 });
 
 app.frame("/", async (ctx) => {
@@ -61,8 +62,16 @@ app.frame(
     features: ["cast", "interactor"],
   }),
   async (ctx) => {
+    const castHash = ctx.frameData?.castId.hash;
+
     const viewerIsOrganizer =
       ctx.var.interactor?.fid === ctx.frameData?.castId.fid;
+
+    const raffleTx = await kvClient.get<string>(`raffle:${castHash}`);
+
+    if (raffleTx) {
+      return Results(ctx, raffleTx);
+    }
 
     if (viewerIsOrganizer) {
       return Admin(ctx);

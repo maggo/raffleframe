@@ -482,6 +482,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kevincharm/gfc-fpe@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@kevincharm/gfc-fpe/-/gfc-fpe-1.0.0.tgz#1216621fc405e53f3ef0436682a05b38f699f461"
+  integrity sha512-qbeCQuZB4z2NEuwEaxciFReJyxDoq94aMJqCJbcRjoNiaJUZuyXxo+tqmh8EXhypfDcu85HDk6zqqAQzWLNPKQ==
+
 "@lukeed/csprng@^1.0.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@lukeed/csprng/-/csprng-1.1.0.tgz#1e3e4bd05c1cc7a0b2ddbd8a03f39f6e4b5e6cfe"
