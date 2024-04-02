@@ -1,10 +1,10 @@
 /** @jsxImportSource frog/jsx */
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export function Container({ children }: { children?: ReactNode }) {
   return (
-    <div tw="w-full h-full flex items-center justify-center">
+    <div tw="w-full h-full flex items-center justify-center bg-white">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/bg.png"
