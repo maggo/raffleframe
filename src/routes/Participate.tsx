@@ -17,7 +17,11 @@ export async function Participate(
   const authorName = ctx.var.cast?.author.username;
 
   if (ctx.frameData) {
-    await fdk.sendAnalytics("raffleframe", await ctx.req.json(), castHash);
+    await fdk.sendAnalytics(
+      `raffleframe_${castHash}`,
+      await ctx.req.json(),
+      castHash,
+    );
   }
 
   if (!castHash || !viewerId) {

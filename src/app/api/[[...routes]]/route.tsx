@@ -112,7 +112,7 @@ app.frame(
     const raffleTx = await kvClient.get<string>(`raffle:${castHash}`);
 
     if (raffleTx) {
-      return Results(ctx, raffleTx);
+      return Results(ctx, raffleTx, viewerIsOrganizer);
     }
 
     if (viewerIsOrganizer) {

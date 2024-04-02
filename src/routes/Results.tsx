@@ -13,6 +13,7 @@ import { Hex, getContract, parseEventLogs } from "viem";
 export async function Results(
   ctx: FrameContext<{ State: State }>,
   raffleTx: string,
+  viewerIsOrganizer: boolean,
 ) {
   const receipt = await publicClient.getTransactionReceipt({
     hash: raffleTx as Hex,
@@ -105,17 +106,21 @@ export async function Results(
             ))}
           </div>
         </div>
-        <div tw="absolute bottom-12 flex text-4xl text-emerald-800">
-          <span>
-            {userHasWon ? (
-              <span tw="text-emerald-400 text-5xl">You won!! 🎉</span>
-            ) : userHasParticipated ? (
-              "You have participated but didn't win!"
-            ) : (
-              "You missed out!"
-            )}
-          </span>
-        </div>
+        {viewerIsOrganizer ? (
+          <div tw="absolute bottom-12 flex text-4xl text-emerald-800">
+            <span>
+              {userHasWon ? (
+                <span tw="text-emerald-400 text-5xl">You won!! 🎉</span>
+              ) : userHasParticipated ? (
+                "You have participated but didn't win!"
+              ) : (
+                "You missed out!"
+              )}
+            </span>
+          </div>
+        ) : (
+          <></>
+        )}
       </Container>
     ),
     intents: [
