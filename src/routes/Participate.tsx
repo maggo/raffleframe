@@ -1,12 +1,13 @@
 /** @jsxImportSource frog/jsx */
 
+import { ERC1155_ABI } from '@/abi/ERC1155';
 import { Route, State } from '@/app/api/[[...routes]]/route';
 import { Container } from '@/lib/Container';
 import { KV_NAMESPACE } from '@/lib/config';
 import { kvClient } from '@/lib/kv';
 import { neynar } from '@/lib/neynar';
 import { fdk } from '@/lib/pinata';
-import { mainnetClient } from '@/lib/viem';
+import { mainnetClient, publicClient } from '@/lib/viem';
 
 import { Button, FrameContext } from 'frog';
 import type { NeynarVariables } from 'frog/middlewares';
@@ -81,6 +82,16 @@ export async function Participate(
       })
     ) ?? [];
 
+  const lilDevsBalance =
+    ctx.var.interactor?.verifiedAddresses.ethAddresses.map((address) =>
+      publicClient.readContract({
+        abi: ERC1155_ABI,
+        address: '0x7BbFA480C8Ee56aCAC50D672B9E1d070ec7BbEef',
+        functionName: 'balanceOf',
+        args: [getAddress(address), BigInt(1)],
+      })
+    ) ?? [];
+
   const hasFollowed = ctx.var.interactor?.viewerContext?.followedBy;
   const hasLiked = await neynar
     .fetchBulkCasts([castHash], { viewerFid: viewerId })
@@ -90,13 +101,9 @@ export async function Participate(
   const hasLilNounOrNoun = await Promise.allSettled([
     ...lilNounsBalances,
     ...nounsBalances,
+    ...lilDevsBalance,
   ]).then((res) =>
     res.some((res) => res.status === 'fulfilled' && res.value > BigInt(0))
-  );
-
-  console.log(
-    await Promise.allSettled([...lilNounsBalances, ...nounsBalances]),
-    hasLilNounOrNoun
   );
 
   const isEligible = hasFollowed && hasLiked && hasLilNounOrNoun;
@@ -131,24 +138,25 @@ export async function Participate(
       <Container>
         <div tw="flex flex-col items-center">
           <div
-            tw="text-7xl text-stone-800 font-bold mb-4"
+            tw="text-7xl text-stone-800 font-bold mb-10"
             style={{ fontFamily: 'LondrinaSolid' }}
           >
             To participate…
           </div>
           <div tw="flex flex-col items-start">
-            <div tw="flex text-5xl text-red-600 my-2">
+            <div tw="flex text-4xl text-red-600 my-2">
               <span>
-                {hasLilNounOrNoun ? '✅' : '➡️'} Hold a Lil Noun or Noun
+                {hasLilNounOrNoun ? '✅' : '➡️'} Hold a Noun, Lil Noun, or Lil
+                Dev
               </span>
             </div>
-            <div tw="flex text-5xl text-red-600 my-2">
+            <div tw="flex text-4xl text-red-600 my-2">
               <span>
                 {hasFollowed ? '✅' : '➡️'} Follow{' '}
                 {authorName ? `@${authorName}` : 'the author'}
               </span>
             </div>
-            <div tw="flex text-5xl text-red-600 my-2">
+            <div tw="flex text-4xl text-red-600 my-2">
               <span>{hasLiked ? '✅' : '➡️'} Like this cast</span>
             </div>
           </div>
