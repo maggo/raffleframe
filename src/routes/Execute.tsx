@@ -1,9 +1,10 @@
 /** @jsxImportSource frog/jsx */
 
-import { Button, FrameContext, TextInput } from "frog";
-import { Container } from "@/lib/Container";
-import { State, type Route } from "@/app/api/[[...routes]]/route";
-import { kvClient } from "@/lib/kv";
+import { Button, FrameContext, TextInput } from 'frog';
+import { Container } from '@/lib/Container';
+import { State, type Route } from '@/app/api/[[...routes]]/route';
+import { kvClient } from '@/lib/kv';
+import { KV_NAMESPACE } from '@/lib/config';
 
 export async function Execute(ctx: FrameContext<{ State: State }>) {
   const castHash = ctx.frameData?.castId.hash;
@@ -11,18 +12,21 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
 
   const { transactionId } = ctx;
 
-  const isValidTransactionId = transactionId && transactionId !== "0x";
+  const isValidTransactionId = transactionId && transactionId !== '0x';
 
   if (isValidTransactionId) {
-    await kvClient.set(`raffle:${castHash}`, transactionId);
+    await kvClient.set(`${KV_NAMESPACE}:raffle:${castHash}`, transactionId);
     return ctx.res({
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-emerald-400 font-bold mb-4">
+            <div
+              tw="text-7xl text-stone-800 font-bold mb-4"
+              style={{ fontFamily: 'LondrinaSolid' }}
+            >
               Deploy Giveaway
             </div>
-            <div tw="text-4xl text-emerald-600">Transaction submitted</div>
+            <div tw="text-5xl text-red-600">Transaction submitted</div>
           </div>
         </Container>
       ),
@@ -36,7 +40,7 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
         <Button
           key="participate"
           action="/participate"
-          value={"/participate" as Route}
+          value={'/participate' as Route}
         >
           Refresh
         </Button>,
@@ -51,7 +55,7 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
   });
 
   const participantCount = castHash
-    ? await kvClient.scard(`participants:${castHash}`)
+    ? await kvClient.scard(`${KV_NAMESPACE}:participants:${castHash}`)
     : 0;
 
   const inputIsValid =
@@ -64,11 +68,14 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
       image: (
         <Container>
           <div tw="flex flex-col items-center">
-            <div tw="text-6xl text-emerald-400 font-bold mb-4">
+            <div
+              tw="text-7xl text-stone-800 font-bold mb-4"
+              style={{ fontFamily: 'LondrinaSolid' }}
+            >
               Deploy Giveaway
             </div>
-            <div tw="text-4xl text-emerald-600">{`Participants: ${participantCount}`}</div>
-            <div tw="text-4xl text-emerald-600">{`Winner count: ${state.winnersCount}`}</div>
+            <div tw="text-5xl text-red-600">{`Participants: ${participantCount}`}</div>
+            <div tw="text-5xl text-red-600">{`Winner count: ${state.winnersCount}`}</div>
           </div>
         </Container>
       ),
@@ -84,17 +91,20 @@ export async function Execute(ctx: FrameContext<{ State: State }>) {
     image: (
       <Container>
         <div tw="flex flex-col items-center">
-          <div tw="text-6xl text-emerald-400 font-bold mb-4">
+          <div
+            tw="text-7xl text-stone-800 font-bold mb-4"
+            style={{ fontFamily: 'LondrinaSolid' }}
+          >
             Pick number of winners
           </div>
-          <div tw="text-4xl text-emerald-600">{`Between 1 and ${participantCount}`}</div>
+          <div tw="text-5xl text-red-600">{`Between 1 and ${participantCount}`}</div>
           {inputIsValid ? (
-            <div tw="text-5xl text-emerald-400 font-bold my-8">{`You picked ${state.winnersCount}`}</div>
+            <div tw="text-5xl text-stone-800 font-bold my-8">{`You picked ${state.winnersCount}`}</div>
           ) : (
             <div tw="text-5xl text-red-500 font-bold my-8">
               {state.winnersCount
                 ? `Invalid choice: ${state.winnersCount}`
-                : ""}
+                : ''}
             </div>
           )}
         </div>
