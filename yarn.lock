@@ -2031,7 +2031,7 @@ css-to-react-native@^3.0.0:
     css-color-keywords "^1.0.0"
     postcss-value-parser "^4.0.2"
 
-csstype@^3.0.2:
+csstype@^3.0.2, csstype@^3.1.3:
   version "3.1.3"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
@@ -2987,10 +2987,10 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-frog@0.7.6:
-  version "0.7.6"
-  resolved "https://registry.npmjs.org/frog/-/frog-0.7.6.tgz#c51e821d83ad39a72e23b96ba814c4c27d6820b8"
-  integrity sha512-+RNoTOrrdTI6LjqSbpliwXi624d4kEDNyp/S61R9rVc3YOmfubDwQSFB2oxXUkugrUXPFynI3Sq6c2m3flOxRA==
+frog@0.11.2:
+  version "0.11.2"
+  resolved "https://registry.npmjs.org/frog/-/frog-0.11.2.tgz#c048a24e82ca25948c7488103c97681688d7f736"
+  integrity sha512-ThpN5IneSwgvJx36kwnLrL6JynaPVwFS91rGy01DIxJGnUAOgDZ8jvf/XFTPaKSHrWBgBs9KhRYmI0RuE1HiFA==
   dependencies:
     "@bufbuild/protobuf" "^1.7.2"
     "@hono/node-server" "^1.8.2"
@@ -2998,11 +2998,12 @@ frog@0.7.6:
     "@noble/curves" "^1.3.0"
     "@noble/hashes" "^1.3.3"
     cac "^6.7.14"
+    csstype "^3.1.3"
     detect-browser "^5.3.0"
     dom-parser "^1.1.5"
     fast-glob "3.3.2"
     fs-extra "^11.2.0"
-    hono-og "0.0.26"
+    hono-og "0.0.27"
     jose "^5.2.2"
     lz-string "^1.5.0"
     path-browserify "^1.0.1"
@@ -3312,18 +3313,23 @@ hex-rgb@^4.1.0:
   resolved "https://registry.npmjs.org/hex-rgb/-/hex-rgb-4.3.0.tgz#af5e974e83bb2fefe44d55182b004ec818c07776"
   integrity sha512-Ox1pJVrDCyGHMG9CFg1tmrRUMRPRsAWYc/PinY0XzJU4K7y7vjNoLKIQ7BR5UJMCxNN8EM1MNDmHWA/B3aZUuw==
 
-hono-og@0.0.26:
-  version "0.0.26"
-  resolved "https://registry.npmjs.org/hono-og/-/hono-og-0.0.26.tgz#bcef75c5f153c97b76f780f8b895ad6e848290e2"
-  integrity sha512-YUaLj+T06fWpykgPoeMbxnRMuEA+L83p5+PcBzlM2P/Rj889wnapvVDtT//81iJhRVLCkdjEkAHfcZaJ67cI8w==
+hono-og@0.0.27:
+  version "0.0.27"
+  resolved "https://registry.npmjs.org/hono-og/-/hono-og-0.0.27.tgz#a136f527f0911a44ef2bde29d0597b61926ef55f"
+  integrity sha512-FtsUmDCG7xKXD8InxzHcdzX5IIe9MrDPFHih0CUd6Hog0NcDV6tksc1cZ1sAAuftSTedmC4LV6Oi1uK6VXvZgQ==
   dependencies:
     "@vercel/og" "~0.6.2"
     workers-og "~0.0.23"
 
-hono@^4, hono@^4.0.8, hono@^4.1.0:
+hono@^4.0.8, hono@^4.1.0:
   version "4.1.3"
   resolved "https://registry.npmjs.org/hono/-/hono-4.1.3.tgz#8fd8cb2fe52da139755891600ffc8fabf4079ca0"
   integrity sha512-V0I6qCw0gn2MA4LLtyXe6oD3/7ToeQf5Zv98o7uSuLuViQgWHJeYoYrZ4NbXhOtg4SaZjNJJm1+XuFB3LN+j6A==
+
+hono@^4.3.8:
+  version "4.3.8"
+  resolved "https://registry.npmjs.org/hono/-/hono-4.3.8.tgz#fa6fb6beb8245d2a95cbd5cce0f0a28c143967f3"
+  integrity sha512-IepU1cWz7oWY/os4Dbgq8dAjQh+APbS0LvLf85bL3cnh4sqMZ1MSBCYFkpm+MIpGoRUMmX8v9CeQh+TmBX3RUA==
 
 http-errors@1.7.3:
   version "1.7.3"

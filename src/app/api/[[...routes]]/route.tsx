@@ -11,7 +11,7 @@ import { Home } from "@/routes/Home";
 import { Participate } from "@/routes/Participate";
 import { Frog } from "frog";
 import { devtools } from "frog/dev";
-import { frog } from "frog/hubs";
+import {neynar as neynarHub} from "frog/hubs"
 import { neynar } from "frog/middlewares";
 import { serveStatic } from "frog/serve-static";
 import { handle } from "frog/next";
@@ -43,7 +43,7 @@ const app = new Frog<{ State: State }>({
   headers: {
     "Cache-Control": "public, max-age=0, must-revalidate",
   },
-  hub: frog(),
+  hub: neynarHub({ apiKey: process.env.NEYNAR_API_KEY! }),
   initialState: {
     route: "/",
   },
